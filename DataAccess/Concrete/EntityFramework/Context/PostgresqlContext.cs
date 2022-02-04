@@ -16,7 +16,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
             optionsBuilder.UseNpgsql("Host=localhost;Database=Northwind;Username=postgres;Password=12345");
         }
 
-        public DbSet<Product> Products { get; set; }
+        public DbSet<Product> products { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }

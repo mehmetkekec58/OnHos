@@ -9,14 +9,16 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
-    public class SqlContext : DbContext
+    public class MySqlContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=OnHos;Trusted_Connection=true");
+            var connectionString = "server=web08.limonhost.net;user=mehmetke_met;password=benimMYSQLsifrem12;database=mehmetke_wp";
+            var serverVersion = new MySqlServerVersion(new Version(4, 9, 7));
+            optionsBuilder.UseMySql(connectionString,serverVersion);
         }
 
-      
+        public DbSet<Product> Products { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }

@@ -41,6 +41,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<AboutManager>().As<IAboutService>();
             builder.RegisterType<EfAboutDal>().As<IAboutDal>();
 
+            builder.RegisterType<FollowManager>().As<IFollowService>();
+            builder.RegisterType<EfFollowDal>().As<IFollowDal>();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

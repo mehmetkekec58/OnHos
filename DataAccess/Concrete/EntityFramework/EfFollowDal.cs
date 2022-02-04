@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, MySqlContext>, IProductDal
+   public class EfFollowDal: EfEntityRepositoryBase<Follow, SqlContext>, IFollowDal
     {
-
     }
 }

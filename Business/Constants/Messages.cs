@@ -27,5 +27,8 @@
         public static string ProfilePhotoUploaded="Profil fotoğrafı güncellendi";
         public static string ProfilePhotoUpdateFailed="Profil fotoğrafını güncelleme başarasız";
         public static string profilePhotoRemoved="Profil fotoğrafı kaldırıldı";
+        public static string TakipEdildi="Kullanıcı takip edildi";
+        public static string TakiptenCikildi="Takipten çıkıldı";
+        public static string KullaniciyiZatenTakipEdiyorsun= "Kullanıcıyı Zaten Takip Ediyorsun";
     }
 }

@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-      /*  [HttpGet("getall")]
+        [HttpGet("getall")]
         //[Authorize(Roles = "Product.List")]
         public IActionResult GetList()
         {
@@ -34,7 +34,7 @@ namespace WebAPI.Controllers
             }
 
             return BadRequest(result.Message);
-        }*/
+        }
      /*
         [HttpGet("getlistbycategory")]
         public IActionResult GetListByCategory(int categoryId)
