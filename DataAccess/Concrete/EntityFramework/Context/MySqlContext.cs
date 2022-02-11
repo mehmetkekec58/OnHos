@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "server=web08.limonhost.net;user=mehmetke_met;password=benimMYSQLsifrem12;database=mehmetke_wp";
+            var connectionString = "server=;user=;password=;database=";
             var serverVersion = new MySqlServerVersion(new Version(4, 9, 7));
             optionsBuilder.UseMySql(connectionString,serverVersion);
         }
