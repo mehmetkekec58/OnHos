@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=Northwind;Username=postgres;Password=12345");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=Northwind;Username=;Password=");
         }
 
         public DbSet<Product> products { get; set; }
