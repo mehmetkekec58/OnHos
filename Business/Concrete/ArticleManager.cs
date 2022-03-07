@@ -29,8 +29,8 @@ namespace Business.Concrete
                 Text=articleDto.Text,
                 Title=articleDto.Title,
                 UserName=articleDto.UserName,
-                PublishDate=articleDto.PublishDate,
-                EditDate=articleDto.EditDate
+                PublishDate=DateTime.Now,
+                EditDate=DateTime.Now
             });
             return new SuccessResult(Messages.ArticleAdded);
         }

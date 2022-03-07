@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfArticleDal : EfEntityRepositoryBase<Article, SqlContext>, IArticleDal
+    public class EfArticleDal : EfEntityRepositoryBase<Article, MySqlContext>, IArticleDal
     {
     }
 }

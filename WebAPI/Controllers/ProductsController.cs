@@ -23,32 +23,37 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        //[Authorize(Roles = "Product.List")]
+        [Authorize(Roles = "Product.List")]
         public IActionResult GetList()
         {
 
-            var result = _productService.GetList();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+            var request = HttpContext.Request;
+            var authHeader = request.Headers["Authorization"];
+            if (authHeader == "")
+                return BadRequest("token yok");
+            return Ok(authHeader);
+            /*  var result = _productService.GetList();
+              if (result.Success)
+              {
+                  return Ok(result);
+              }
 
-            return BadRequest(result.Message);
+              return BadRequest(result.Message);*/
         }
-     /*
+     
         [HttpGet("getlistbycategory")]
         public IActionResult GetListByCategory(int categoryId)
         {
             var result = _productService.GetListByCategory(categoryId);
             if (result.Success)
             {
-                return Ok(result.Data);
+                return Ok(result);
             }
 
-            return BadRequest(result.Message);
+            return BadRequest(result);
         }
 
-        [HttpGet("getbyid")]
+     /*   [HttpGet("getbyid")]
         public IActionResult GetById(int productId)
         {
             var result = _productService.GetById(productId);

@@ -7,6 +7,7 @@ using System.Text;
 using Core.Entities.Concrete;
 using Core.Extensions;
 using Core.Utilities.Security.Encyption;
+using Core.Utilities.Security.jwt;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
@@ -31,9 +32,12 @@ namespace Core.Utilities.Security.Jwt
             var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var token = jwtSecurityTokenHandler.WriteToken(jwt);
-
+           // var aa = TokenVerify(token);
+          
             return new AccessToken
-            {
+            { 
+               //  Aa = aa,
+              //   Bb= aa,
                 Token = token,
                 Expiration = _accessTokenExpiration
             };
@@ -54,6 +58,16 @@ namespace Core.Utilities.Security.Jwt
             return jwt;
         }
 
+        public string getUserNamaByToken(string token)
+        {
+            var jwth = new JwtSecurityTokenHandler();
+            var rdJwth = jwth.ReadJwtToken(token);
+            string userName = rdJwth.Claims.Where(p => p.Type == "unique_name").ToList()[0].Value;
+            return userName;
+
+
+        }
+
         private IEnumerable<Claim> SetClaims(User user, List<OperationClaim> operationClaims)
         {
             var claims = new List<Claim>();
@@ -62,8 +76,10 @@ namespace Core.Utilities.Security.Jwt
             claims.AddName($"{user.FirstName} {user.LastName}");
             claims.AddUserName(user.UserName);
             claims.AddRoles(operationClaims.Select(c => c.Name).ToArray());
-
+          
             return claims;
         }
+
+       
     }
 }

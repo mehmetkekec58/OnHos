@@ -9,14 +9,15 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
-    public class SqlContext : DbContext
+    public class DenemeContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=OnHos;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=true");
         }
 
-  
+        public DbSet<Product> products { get; set; }
+        public DbSet<Category> Categories { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
@@ -24,12 +25,6 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<About> Abouts { get; set; }
         public DbSet<Article> Articles { get; set; }
         public DbSet<Follow> Follows { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Message> Messages { get; set; }
-        public DbSet<MessageFile> MessageFiles { get; set; }
-
-
-
 
 
 

@@ -11,8 +11,11 @@ namespace Business.Abstract
 {
    public interface IFollowService
     {
-        IResult TakipEt(Follow follow);
-        IResult TakibiBirak(Follow follow);
-        IDataResult<TakipEdiyorMu> TakipEdiyorMu(Follow follow);
+        IResult Follow(Follow follow);
+        IResult Unfollow(Follow follow);
+        IDataResult<bool> IsFollow(Follow follow);
+        IDataResult<int> NumberOfFollowers(string userName);  
+
+
     }
 }

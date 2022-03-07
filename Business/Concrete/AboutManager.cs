@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -18,7 +19,7 @@ namespace Business.Concrete
             _aboutDal = aboutDal;
         }
 
-        public void add(string about, string userName)
+        public void Add(string about, string userName)
         {
             _aboutDal.Add(new About
             {
@@ -26,5 +27,14 @@ namespace Business.Concrete
                 UserName=userName
             });
         }
+
+        public IResult Update(About about)
+        {
+         
+            _aboutDal.Update(about) ;
+            return new SuccessResult();
+        }
+
+      
     }
 }

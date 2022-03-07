@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfProductDal : EfEntityRepositoryBase<Product, DenemeContext>, IProductDal
+    public  class EfMessageFileDal: EfEntityRepositoryBase<MessageFile, SqlContext>, IMessageFileDal
     {
-
     }
 }

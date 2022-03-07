@@ -44,6 +44,13 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<FollowManager>().As<IFollowService>();
             builder.RegisterType<EfFollowDal>().As<IFollowDal>();
 
+            builder.RegisterType<MessageManager>().As<IMessageService>();
+            builder.RegisterType<EfMessageDal>().As<IMessageDal>();
+
+            builder.RegisterType<MessageFileManager>().As<IMessageFileService>();
+            builder.RegisterType<EfMessageFileDal>().As<IMessageFileDal>();
+
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces()

@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos
 {
-   public class TakipEtDto:IDto
+    public class MessageDto:IDto
     {
-        public string TakipEden { get; set; }
-        public string TakipEdilen { get; set; }
+        public string GonderenUserName { get; set; }
+        public string AlanUserName { get; set; }
+        public string Text { get; set; }
+
     }
 }

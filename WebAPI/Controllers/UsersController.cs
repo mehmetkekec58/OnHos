@@ -30,5 +30,17 @@ namespace WebAPI.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpGet("getclaimnamebyusername")]
+        public IActionResult GetclaimNameByUserName(string userName)
+        {
+            var result = _userService.GetClaimNameByUserName(userName);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }

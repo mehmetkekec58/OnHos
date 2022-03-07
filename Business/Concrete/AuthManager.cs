@@ -44,7 +44,7 @@ namespace Business.Concrete
             };
             _userService.Add(user);
             _profilePhotoService.Add(defaultProfilePhotoUrl,user.UserName);
-            _aboutService.add("", user.UserName);
+            _aboutService.Add("", user.UserName);
             
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }

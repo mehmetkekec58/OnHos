@@ -18,17 +18,30 @@
         public static string ProductNameAlreadyExists = "Ürün ismi zaten mevcut";
         public static string NewShipperAdded="Yeni kargo servisi eklendi";
         public static string ShipperUpdated="Kargo servisi bilgileri güncellendi.";
+
         public static string ArticleAdded="Yazı eklendi";
         public static string ArticleUpdate="Yazı güncellendi";
         public static string ArticleDeleted="Yazı silindi";
+
         public static string ProfilePhotoUpdated="Profil fotoğrafı güncelledi";
         public static string FileUploadedSuccessfully="Dosya yüklendi";
         public static string NoFileselected="Dosya seçilmedi";
         public static string ProfilePhotoUploaded="Profil fotoğrafı güncellendi";
         public static string ProfilePhotoUpdateFailed="Profil fotoğrafını güncelleme başarasız";
         public static string profilePhotoRemoved="Profil fotoğrafı kaldırıldı";
-        public static string TakipEdildi="Kullanıcı takip edildi";
-        public static string TakiptenCikildi="Takipten çıkıldı";
-        public static string KullaniciyiZatenTakipEdiyorsun= "Kullanıcıyı Zaten Takip Ediyorsun";
+
+        public static string Followed="Kullanıcı takip edildi";
+        public static string UnFollowed = "Takipten çıkıldı";
+        public static string YouAreAlreadyFollowingTheUser= "Kullanıcıyı Zaten Takip Ediyorsun";
+        public static string YouAreNotFollowingTheUser="Kullanıcıyı takip etmiyorsun";
+        public static string SomethingWentWrong="Bir şeyler yanlış gitti";
+        public static string ThereIsNoSuchUser="Böyle bir kullanıcı yok";
+        public static string YouCantFollowYourself="Kendini takip edemezsin";
+        public static string ThisUserCannotBeFollowed="Bu kullanıcı takip edilemez";
+        public static string NumberOfFollowers="Takipçi sayısı";
+        public static string CategoryAdded="Kategori eklendi";
+        public static string CategoryDeleted="Kategori silindi";
+        public static string CategoryUpdated="kategori güncellendi";
+        public static string AllMessagesDeleted="Tüm mesajlar temizlendi";
     }
 }

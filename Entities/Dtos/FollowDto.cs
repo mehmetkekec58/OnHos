@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Entities.Dtos
 {
-   public class TakipEdiyorMu:IDto
+   public class FollowDto:IDto
     {
-        public bool YesOrNo { get; set; }
-
+        public string TakipEden { get; set; }
+        public string TakipEdilen { get; set; }
     }
 }
