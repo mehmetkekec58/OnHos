@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -37,6 +38,11 @@ namespace Business.Concrete
 
         public IResult Delete(Article article)
         {
+            IResult result = BusinessRules.Run(YaziKendisininMi(article.Id, article.UserName));
+            if (!result.Success)
+            {
+                return result;
+            }
             _articleDal.Delete(article);
             return new SuccessResult(Messages.ArticleDeleted);
         }
@@ -56,11 +62,50 @@ namespace Business.Concrete
            
             return new SuccessDataResult<List<Article>>(_articleDal.GetAll(p=>p.UserName==userName));
         }
+        public IDataResult<int> GetNumberOfArticlesByUserName(string userName)
+        {
+
+            return new SuccessDataResult<int>(_articleDal.GetAll(p => p.UserName == userName).Count());
+        }
 
         public IResult Update(Article article)
         {
-            _articleDal.Update(article);
+            IResult result = BusinessRules.Run(YaziKendisininMi(article.Id, article.UserName));
+            if (!result.Success)
+            {
+                return result;
+            }
+            _articleDal.Update(new Article
+            {
+                Id = article.Id,
+                UserName = article.UserName,
+                CategoryId = article.CategoryId,
+                Text = article.Text,
+                Title= article.Title,
+                PublishDate = article.PublishDate,
+                EditDate = DateTime.Now,
+            });
             return new SuccessResult(Messages.ArticleUpdate);
+        }
+        private IResult YaziKendisininMi(int id, string userName)
+        {
+            Article article = _articleDal.Get(p=>p.Id == id);
+
+            if (article != null)
+            {
+                if (article.UserName == userName)
+                {
+                    return new SuccessResult();
+                }
+                else
+                {
+                    return new ErrorResult("Yazı size ait değil");
+                }
+            }
+            else
+            {
+                return new ErrorResult("Yazı bulunamadı");
+            }
         }
     }
 }

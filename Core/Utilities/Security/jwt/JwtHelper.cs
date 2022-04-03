@@ -58,7 +58,7 @@ namespace Core.Utilities.Security.Jwt
             return jwt;
         }
 
-        public string getUserNamaByToken(string token)
+        public string getUserNameByToken(string token)
         {
             var jwth = new JwtSecurityTokenHandler();
             var rdJwth = jwth.ReadJwtToken(token);

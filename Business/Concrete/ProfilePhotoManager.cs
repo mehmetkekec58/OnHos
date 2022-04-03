@@ -55,23 +55,19 @@ namespace Business.Concrete
          return new SuccessDataResult<ProfilePhoto>(_profilePhotoDal.Get(p=>p.UserName==userName));
         }
 
-        public IResult Update(IFormFile file, ProfilePhoto profilePhoto)
+        public IResult Update(ProfilePhoto profilePhoto) 
         {
-            string result =_photoUploadHelper.Upload(file);
-          
-            if (result !=null)
-            {
+           
                 _profilePhotoDal.Update(new ProfilePhoto
                 {
                     UserName = profilePhoto.UserName,
-                    Url = result,
+                    Url = profilePhoto.Url,
                     Id = profilePhoto.Id,
                     Date = DateTime.Now
                     
                 });
                 return new SuccessResult(Messages.ProfilePhotoUploaded);
-            }
-            return new ErrorResult(Messages.ProfilePhotoUpdateFailed);
+         
 
             }
            

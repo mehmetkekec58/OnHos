@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.Utilities.Results;
+using Entities.Dtos;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,6 @@ namespace Business.Helper.Abstract
 {
     public interface IFileUploadHelper
     {
-        string Upload(IFormFile file);
+        IDataResult<FileDto> Upload(IFormFile file,string yol);
     }
 }

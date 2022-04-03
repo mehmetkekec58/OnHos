@@ -17,5 +17,6 @@ namespace Business.Abstract
         IDataResult<List<Article>> GetAll();
         IDataResult<Article> GetArticleById(int id);
         IDataResult<List<Article>> GetArticlesByUserName(string userName);
+        IDataResult<int> GetNumberOfArticlesByUserName(string userName);
     }
 }

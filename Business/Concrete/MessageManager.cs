@@ -41,26 +41,33 @@ namespace Business.Concrete
             return new SuccessDataResult<List<MessageWithFileDto>>(_messageDal.GetAllMessagesAndList(karsiKisiUserName, kendisiUserName));
         }
 
-        public IResult Send(MessageDto message,IFormFile file)
+        public IResult Send(MessageDto message,FileDto fileDto)
         {
             
             Message messages = new Message();
 
             messages.AlanUserName = message.AlanUserName;
             messages.GonderenUserName = message.GonderenUserName;
-            messages.MessageType = file == null ? "text" : file.ContentType;
+            messages.MessageType = fileDto == null ? "text" : fileDto.FileType;
             messages.Text = message.Text;
             messages.Date = DateTime.Now;
 
             
             _messageDal.Add(messages);
 
-            if (file != null)
-            { 
+         
               int result =  _messageDal.Get(p=>p.AlanUserName==messages.AlanUserName && p.GonderenUserName==messages.GonderenUserName && p.Date==messages.Date && p.Text==messages.Text && p.MessageType==messages.MessageType).Id;
-              _messageFileService.Upload(file,result);
+              _messageFileService.Upload(new MessageFile
+              {
+               
+                  FileName=fileDto.FileName,
+                  FileType=fileDto.FileType,
+                  MessageId=result,
+                  Size=fileDto.Size,
+                  Url=fileDto.Url,
+              });
 
-            }
+           
             return new SuccessResult();
         }
         

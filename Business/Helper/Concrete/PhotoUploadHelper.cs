@@ -13,7 +13,7 @@ namespace Business.Helper.Concrete
 {
     public class PhotoUploadHelper : IPhotoUploadHelper
     {
-        public string Upload(IFormFile file)
+        public IDataResult<string> Upload(IFormFile file)
         {
             if (file != null)
             {
@@ -28,9 +28,9 @@ namespace Business.Helper.Concrete
 
                 file.CopyTo(stream);
 
-                return path;
+                return new SuccessDataResult<string>(path);
             }
-            return null;
+            return new ErrorDataResult<string>("Dosya seçmediniz");
         }
         
 

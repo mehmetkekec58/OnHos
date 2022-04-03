@@ -15,5 +15,9 @@ namespace Entities.Concrete
         public string Text { get; set; }
         public string MessageType { get; set; }
         public DateTime Date { get; set ; }
+        public bool AlanUserSildiMi { get; set; }
+        public bool GonderenUserSildiMi { get; set; }
+
+
     }
 }

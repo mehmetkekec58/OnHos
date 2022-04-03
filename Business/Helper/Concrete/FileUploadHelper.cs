@@ -1,4 +1,6 @@
 ﻿using Business.Helper.Abstract;
+using Core.Utilities.Results;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,7 @@ namespace Business.Helper.Concrete
 {
     public class FileUploadHelper : IFileUploadHelper
     {
-        public string Upload(IFormFile file)
+        public IDataResult<FileDto> Upload(IFormFile file, string yol)
         {
             if (file != null)
             {
@@ -20,15 +22,15 @@ namespace Business.Helper.Concrete
 
                 string fileName = Guid.NewGuid() + imageExtension;
 
-                string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/file/{fileName}");
+                string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/{yol}/{fileName}");
 
                 using var stream = new FileStream(path, FileMode.Create);
 
                 file.CopyTo(stream);
 
-                return path;
+                return new SuccessDataResult<FileDto>(new FileDto { Url=path, FileName = file.FileName, FileType = file.ContentType, Size = Convert.ToInt32(file.Length) } ,"Dosya yüklendi");
             }
-            return null;
+            return new ErrorDataResult<FileDto>("Dosya seçmediniz");
         }
     }
 }

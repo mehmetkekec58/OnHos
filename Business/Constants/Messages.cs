@@ -43,5 +43,17 @@
         public static string CategoryDeleted="Kategori silindi";
         public static string CategoryUpdated="kategori güncellendi";
         public static string AllMessagesDeleted="Tüm mesajlar temizlendi";
+        public static string TokenYok = "Token yok";
+        public static string BoyleBirUserYok="Böyle bir kullanıcı yok";
+        public static string BoyleBirSaglikCalisaniYok="Böyle bir sağlık çalışanı yok";
+        public static string VideoDeleted="Video silindi";
+        public static string VideoUploaded="Video güncellendi";
+        public static string PostShared="Gönderi paylaşıldı";
+        public static string PostUpdated="Gönderi güncellendi";
+        public static string PostDeleted="Gönderi silindi";
+        public static string UserUpdated = "Kullanıcı bilgileri güncellendi";
+        public static string DeletedFromHistory="Geçmişten silindi";
+        public static string ProfileDetailsUpdated="Profile bilgileri güncellendi";
+        public static string BranchUpdated= "Branş güncellendi";
     }
 }

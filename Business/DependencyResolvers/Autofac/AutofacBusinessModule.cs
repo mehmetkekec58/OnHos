@@ -10,6 +10,10 @@ using Core.Utilities.Interceptors;
 using Core.Utilities.Security.Jwt;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
+using Core.Others.Abstract;
+using Core.Others.Concrete;
+using Business.Helper.Abstract;
+using Business.Helper.Concrete;
 
 namespace Business.DependencyResolvers.Autofac
 {
@@ -50,6 +54,24 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<MessageFileManager>().As<IMessageFileService>();
             builder.RegisterType<EfMessageFileDal>().As<IMessageFileDal>();
 
+
+            builder.RegisterType<HistoryArticleManager>().As<IHistoryArticleService>();
+            builder.RegisterType<EfHistoryArticleDal>().As<IHistoryArticleDal>();
+
+            builder.RegisterType<BranchManager>().As<IBranchService>();
+            builder.RegisterType<EfBranchDal>().As<IBranchDal>();
+
+            builder.RegisterType<VideoManager>().As<IVideoService>();
+            builder.RegisterType<EfVideoDal>().As<IVideoDal>();
+
+
+            builder.RegisterType<PostManager>().As<IPostService>();
+            builder.RegisterType<EfPostDal>().As<IPostDal>();
+
+
+            builder.RegisterType<Header>().As<IHeader>();
+            builder.RegisterType<PhotoUploadHelper>().As<IPhotoUploadHelper>();
+            builder.RegisterType<PayHelper>().As<IPayHelper>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

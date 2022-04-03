@@ -14,10 +14,9 @@ namespace Business.Abstract
     {
         void Add(string Url,string userName);
         IDataResult<ProfilePhoto> GetProfilePhotoByUserName(string userName);
-        IResult Update(IFormFile file, ProfilePhoto profilePhoto);
+        IResult Update(ProfilePhoto profilePhoto);
         IResult Delete(ProfilePhoto profile);
-
-      
-
+       
+   
     }
 }

@@ -27,7 +27,7 @@ namespace Business.Concrete
 
         public IResult Follow(Follow follow)
         {
-           IResult result = BusinessRules.Run(IsAlreadyFollowing(follow)/*,IsThereTheUser(follow)*/,IsYourself(follow),CanItBeFollowed(follow));
+           IResult result = BusinessRules.Run(IsAlreadyFollowing(follow),IsThereTheUser(follow),IsYourself(follow),CanItBeFollowed(follow));
             if (result != null)
             {
                 return result;
@@ -40,7 +40,7 @@ namespace Business.Concrete
         }
         public IDataResult<bool> IsFollow(Follow follow)
         {
-            IResult result = BusinessRules.Run(IsAlreadyFollowing(follow)/*,IsThereTheUser(follow)*/);
+            IResult result = BusinessRules.Run(IsAlreadyFollowing(follow),IsThereTheUser(follow));
             if (result !=null)
             {
                 return new SuccessDataResult<bool>(true, result.Message);
@@ -86,12 +86,12 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        //Sadece doktor olanlar takip edilebilir
+        //Sadece doktor ve yetkili kişi olanlar takip edilebilir
         private IResult CanItBeFollowed(Follow follow)
         {
-            foreach (string item in _userService.GetClaimsNameByUserName(follow.TakipEdilen)) 
+            foreach (OperationClaim item in _userService.GetClaimsNameByUserName(follow.TakipEdilen)) 
             {
-                if (item != "")
+                if (item.Name != "")
                 {
                     return new SuccessResult();
                 }
@@ -99,15 +99,15 @@ namespace Business.Concrete
             return new ErrorResult(Messages.ThisUserCannotBeFollowed) ;
         }
 
-        /* private IResult IsThereTheUser(Follow follow)
+        private IResult IsThereTheUser(Follow follow)
        {
-           var result = _userService.GetUsersByUserName(new string[]{follow.TakipEden,follow.TakipEdilen});
-           if ((result[0] !=null && result[1]!=null) || result[0]!=null||result  )
+           var result = _userService.GetByUserName(follow.TakipEdilen);
+           if (result !=null)
            {
                return new SuccessResult();
            }
            return new ErrorResult(Messages.ThereIsNoSuchUser);
 
-       }*/
+       }
     }
 }

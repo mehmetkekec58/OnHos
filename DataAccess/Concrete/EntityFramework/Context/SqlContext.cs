@@ -27,6 +27,11 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Category> Categories { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<MessageFile> MessageFiles { get; set; }
+        public DbSet<HistoryArticle> HistoryArticle{ get; set; }
+        public DbSet<Branch> Branches { get; set; }
+        public DbSet<Video> Videos { get; set; }
+        public DbSet<Post> Posts { get; set; }
+
 
 
 

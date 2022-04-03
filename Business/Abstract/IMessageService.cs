@@ -12,9 +12,10 @@ namespace Business.Abstract
 {
     public interface IMessageService
     {
-        IResult Send(MessageDto message, IFormFile file);
+        IResult Send(MessageDto message, FileDto fileDto);
         IDataResult<List<MessageWithFileDto>> GetAllMessagesAndList(string karsiKisiUserName, string kendisiUserName);
         IResult AllMessageDelete(string karsiUserName,string gonderenUserName);
+
 
     }
 }

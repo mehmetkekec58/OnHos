@@ -11,7 +11,7 @@ namespace Business.Abstract
 {
     public  interface IMessageFileService
     {
-       IResult Upload(IFormFile file, int messageId);
+       IResult Upload(MessageFile messageFile);
 
          
     }

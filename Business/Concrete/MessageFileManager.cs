@@ -16,31 +16,21 @@ namespace Business.Concrete
     public class MessageFileManager : IMessageFileService
     {
         IMessageFileDal _messageFileDal;
-        IFileUploadHelper _fileUploadHelper;
+ 
 
-        public MessageFileManager(IMessageFileDal messageFileDal, IFileUploadHelper fileUploadHelper)
+        public MessageFileManager(IMessageFileDal messageFileDal)
         {
             _messageFileDal = messageFileDal;
-            _fileUploadHelper = fileUploadHelper;
+         
         }
 
-        public IResult Upload(IFormFile file ,int messageId)
+        public IResult Upload(MessageFile messageFile)
         {
-          var result =  _fileUploadHelper.Upload(file);
-            if (result !=null)
-            {
-                _messageFileDal.Add(new MessageFile
-                {
-                 Url=result,
-                 FileType=file.ContentType,
-                 FileName=file.FileName,
-                 Size = Convert.ToInt32(file.Length),
-                 MessageId=messageId
-                });
+                _messageFileDal.Add(messageFile);
                 return new SuccessResult();
-            }
+           
             
-            return new ErrorResult(Messages.SomethingWentWrong);
+           
           
         }
 

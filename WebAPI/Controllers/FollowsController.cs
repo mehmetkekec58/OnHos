@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Authorization;
@@ -16,20 +18,28 @@ namespace WebAPI.Controllers
     //[Authorize]
     public class FollowsController : ControllerBase
     {
-        IFollowService _followService;
+        private IFollowService _followService;
+        private IUserService _userService;
 
-        public FollowsController(IFollowService followService)
+        public FollowsController(IFollowService followService, IUserService userService)
         {
             _followService = followService;
+            _userService = userService;
         }
 
         [HttpPost("follow")]
-        public IActionResult Follow(FollowDto takipEtDto)
+        public IActionResult Follow(string takipEdilecekUserName)
         {
+          
+            var takipEdenUserName = _userService.GetUserNameByToken(HttpContext);
+            if (!takipEdenUserName.Success)
+            {
+                return BadRequest(takipEdenUserName);
 
+            }
             var result = _followService.Follow(new Follow{
-                TakipEden=takipEtDto.TakipEden, 
-                TakipEdilen=takipEtDto.TakipEdilen });
+                TakipEden= takipEdenUserName.Data, 
+                TakipEdilen=takipEdilecekUserName });
             if (result.Success)
             {
                 return Ok(result);
@@ -40,7 +50,15 @@ namespace WebAPI.Controllers
         [HttpDelete("unfollow")]
         public IActionResult Unfollow(Follow follow)
         {
-            var result = _followService.Unfollow(follow);
+            var takipEdenUserName = _userService.GetUserNameByToken(HttpContext);
+            if (!takipEdenUserName.Success)
+            {
+                return BadRequest(takipEdenUserName);
+
+            }
+         
+            var result = _followService.Unfollow(new Follow { 
+                Id = follow.Id, TakipEden = takipEdenUserName.Data, TakipEdilen = follow.TakipEdilen });
             if (result.Success)
             {
                 return Ok(result);
@@ -49,12 +67,19 @@ namespace WebAPI.Controllers
         }
        // [AllowAnonymous]
         [HttpPost("isfollow")]
-        public IActionResult IsFollow(FollowDto followDto)
+        public IActionResult IsFollow(string userName)
         {
+            var takipEdenUserName = _userService.GetUserNameByToken(HttpContext);
+            if (!takipEdenUserName.Success)
+            {
+                return BadRequest(takipEdenUserName);
+
+            } 
+
             var result = _followService.IsFollow(new Follow
             {
-                TakipEden=followDto.TakipEden,
-                TakipEdilen=followDto.TakipEdilen
+                TakipEden=takipEdenUserName.Data,
+                TakipEdilen= userName
             });
             if (result.Success)
             {
@@ -62,7 +87,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
-        [AllowAnonymous]
+      //  [AllowAnonymous]
         [HttpGet("numberoffollowers")]
         public IActionResult NumberOfFollowers(string userName)
         {

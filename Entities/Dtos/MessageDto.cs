@@ -12,6 +12,7 @@ namespace Entities.Dtos
         public string GonderenUserName { get; set; }
         public string AlanUserName { get; set; }
         public string Text { get; set; }
+        public FileDto fileDto { get; set; }
 
     }
 }

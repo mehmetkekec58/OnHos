@@ -61,7 +61,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  }
                                   
                              };
-                return result.ToList()[0];
+                return result.ToList().Count()>0?  result.ToList()[0]: null;
                
 
             }

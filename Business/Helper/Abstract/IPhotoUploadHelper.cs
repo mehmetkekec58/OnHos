@@ -10,6 +10,6 @@ namespace Business.Helper.Abstract
 {
     public interface IPhotoUploadHelper
     {
-        string Upload(IFormFile file);
+        IDataResult<string> Upload(IFormFile file);
     }
 }

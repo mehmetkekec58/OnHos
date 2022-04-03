@@ -17,7 +17,6 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (var context = new SqlContext())
             {
-
                 var file = from a in context.MessageFiles
                            select new MessageFile
                            {
@@ -30,8 +29,8 @@ namespace DataAccess.Concrete.EntityFramework
                            };
 
                 var result = from a in context.Messages
-                             where a.AlanUserName == KarsiUserName && a.GonderenUserName == KendiUserName
-                             || a.AlanUserName == KendiUserName && a.GonderenUserName == KarsiUserName
+                             where a.AlanUserName == KarsiUserName && a.GonderenUserName == KendiUserName && a.GonderenUserSildiMi==false
+                             || a.AlanUserName == KendiUserName && a.GonderenUserName == KarsiUserName  && a.AlanUserSildiMi == false
                              select new MessageWithFileDto
                              {
                                  MessageId = a.Id,
@@ -43,30 +42,7 @@ namespace DataAccess.Concrete.EntityFramework
                                      ? null
                                      : file.Where(p => p.MessageId == a.Id).ToList()[0]
                              };
-                 
-
-             /* var result = from a in context.Messages
-                             join b in context.MessageFiles
-                             on a.Id equals b.MessageId
-                             where a.AlanUserName == KarsiUserName && a.GonderenUserName == KendiUserName
-                           //  || a.AlanUserName == KendiUserName && a.GonderenUserName == KarsiUserName
-//orderby a.Date ascending
-                             select new MessageWithFileDto
-                             {
-                                 MessageId = a.Id,
-                                 AlanUserName = a.AlanUserName,
-                                 Date = a.Date,
-                                 Text = a.Text,
-                                 GonderenUserName = a.GonderenUserName,
-                                 File =null, /*a.MessageType != "text" ? new MessageFile
-                                 {
-                                     MessageId = b.MessageId,
-                                     FileName = b.FileName,
-                                     FileType = b.FileType,
-                                     Size = b.Size,
-                                     Url = b.Url,
-                                 } : null*/
-                            //;*/
+                
 
                 return result.ToList();
             }
