@@ -33,7 +33,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Video>> GetAllByUserName(string userName)
         {
-            return new SuccessDataResult<List<Video>>(_videoDal.GetAll(p => p.UserName == userName));
+            return new SuccessDataResult<List<Video>>(_videoDal.GetAll(p => p.UserName == userName).OrderByDescending(x=>x.Date).ToList());
         }
 
         public IDataResult<int> GetNumberOfVideoByUserName(string userName)

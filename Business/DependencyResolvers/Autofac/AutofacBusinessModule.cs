@@ -43,7 +43,7 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<EfProfilePhotoDal>().As<IProfilePhotoDal>();
 
             builder.RegisterType<AboutManager>().As<IAboutService>();
-            builder.RegisterType<EfAboutDal>().As<IAboutDal>();
+            builder.RegisterType<EfAboutDal>().As<IReadingListDal>();
 
             builder.RegisterType<FollowManager>().As<IFollowService>();
             builder.RegisterType<EfFollowDal>().As<IFollowDal>();
@@ -72,6 +72,15 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<Header>().As<IHeader>();
             builder.RegisterType<PhotoUploadHelper>().As<IPhotoUploadHelper>();
             builder.RegisterType<PayHelper>().As<IPayHelper>();
+
+            builder.RegisterType<ReadingListsManager>().As<IReadingListsService>();
+            builder.RegisterType<EfReadingListsDal>().As<IReadingListsDal>();
+
+            builder.RegisterType<VisitDoctorProfileManager>().As<IVisitDoctorProfileService>();
+            builder.RegisterType<EfVisitDoctorProfileDal>().As<IVisitDoctorProfileDal>();
+
+            builder.RegisterType<TagManager>().As<ITagService>();
+            builder.RegisterType<EfTagDal>().As<ITagDal>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

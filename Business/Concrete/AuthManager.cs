@@ -30,7 +30,7 @@ namespace Business.Concrete
         public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
         {
             byte[] passwordHash, passwordSalt;
-            string defaultProfilePhotoUrl = "https://i1.wp.com/www.kagitvs.com/projedenizi/wp-content/uploads/2021/07/AnaResim-2.jpg?resize=495%2C400&ssl=1";
+            string defaultProfilePhotoUrl = "https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg";
             HashingHelper.CreatePasswordHash(password, out passwordHash, out passwordSalt);
             var user = new User
             {

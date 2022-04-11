@@ -22,7 +22,7 @@ namespace Business.Concrete
             _articleDal = articleDal;
         }
 
-        public IResult Add(ArticleDto articleDto)
+        public IResult Add(Article articleDto)
         {
 
             _articleDal.Add(new Article
@@ -39,7 +39,7 @@ namespace Business.Concrete
         public IResult Delete(Article article)
         {
             IResult result = BusinessRules.Run(YaziKendisininMi(article.Id, article.UserName));
-            if (!result.Success)
+            if (result !=null)
             {
                 return result;
             }
@@ -60,7 +60,7 @@ namespace Business.Concrete
         public IDataResult<List<Article>> GetArticlesByUserName(string userName)
         {
            
-            return new SuccessDataResult<List<Article>>(_articleDal.GetAll(p=>p.UserName==userName));
+            return new SuccessDataResult<List<Article>>(_articleDal.GetAll(p=>p.UserName==userName).OrderByDescending(x => x.PublishDate).ToList());
         }
         public IDataResult<int> GetNumberOfArticlesByUserName(string userName)
         {
@@ -71,7 +71,7 @@ namespace Business.Concrete
         public IResult Update(Article article)
         {
             IResult result = BusinessRules.Run(YaziKendisininMi(article.Id, article.UserName));
-            if (!result.Success)
+            if (result != null)
             {
                 return result;
             }

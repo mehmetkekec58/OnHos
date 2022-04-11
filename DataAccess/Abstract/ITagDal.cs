@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-   public interface IReadingListDal: IEntityRepository<About>
+    public interface ITagDal:IEntityRepository<Tag>
     {
+        List<Tag> GetAllByArticleId(int id);
+        List<Tag> GetAllByVideoId(int id);
     }
 }

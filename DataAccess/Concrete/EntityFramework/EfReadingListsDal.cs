@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-  public class EfAboutDal : EfEntityRepositoryBase<About, SqlContext>, IReadingListDal
+    public class EfReadingListsDal:EfEntityRepositoryBase<ReadingList,SqlContext>, IReadingListsDal
     {
     }
 }

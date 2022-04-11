@@ -14,6 +14,7 @@ namespace Entities.Concrete
         public string Title { get; set; }
         public string Text { get; set; }
         public int CategoryId { get; set; }
+        public string ImageUrl { get; set; }
         public DateTime? PublishDate { get; set; }
         public DateTime? EditDate { get; set; }
     }

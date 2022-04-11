@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace Entities.Concrete
 {
-    public class HistoryArticle:IEntity
+    public class HistoryArticle:History
     {
-        public int Id { get; set; }
-        public string UserName { get; set; }
+        
         public int ArticleId { get; set; }
-        public DateTime Date { get; set; }
+      
     }
 }

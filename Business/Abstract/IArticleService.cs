@@ -11,7 +11,7 @@ namespace Business.Abstract
 {
     public interface IArticleService
     {
-        IResult Add(ArticleDto articleDto);
+        IResult Add(Article articleDto);
         IResult Update(Article article);
         IResult Delete(Article article);
         IDataResult<List<Article>> GetAll();

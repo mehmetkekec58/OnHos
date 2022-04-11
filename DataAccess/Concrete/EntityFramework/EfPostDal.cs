@@ -12,5 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfPostDal: EfEntityRepositoryBase<Post,SqlContext>, IPostDal
     {
+        
     }
 }

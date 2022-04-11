@@ -12,9 +12,9 @@ namespace Business.Concrete
 {
     public class AboutManager : IAboutService
     {
-        private IAboutDal _aboutDal;
+        private IReadingListDal _aboutDal;
 
-        public AboutManager(IAboutDal aboutDal)
+        public AboutManager(IReadingListDal aboutDal)
         {
             _aboutDal = aboutDal;
         }
@@ -29,9 +29,8 @@ namespace Business.Concrete
         }
 
         public IResult Update(About about)
-        {
-         
-            _aboutDal.Update(about) ;
+        {         
+            _aboutDal.Update(about);
             return new SuccessResult();
         }
 

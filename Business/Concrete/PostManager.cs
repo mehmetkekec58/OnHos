@@ -33,7 +33,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Post>> GetAllByUserName(string userName)
         {
-           return new SuccessDataResult<List<Post>>(_postDal.GetAll(p=>p.UserName==userName));
+           return new SuccessDataResult<List<Post>>(_postDal.GetAll(p=>p.UserName==userName).OrderByDescending(x=>x.Date).ToList());
         }
 
         public IResult Share(Post post)

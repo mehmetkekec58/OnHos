@@ -10,5 +10,6 @@ namespace DataAccess.Abstract
 {
    public interface IArticleDal: IEntityRepository<Article>
     {
+      // Article GetAllWithTagByUserName(String userName);
     }
 }

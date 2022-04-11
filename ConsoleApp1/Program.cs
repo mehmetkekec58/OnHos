@@ -14,6 +14,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            IPostService postService = new PostManager(new EfPostDal());
+
+            List<Post> s =  postService.GetAllByUserName("mehmetkekec").Data;
+
+            foreach (Post post in s)
+            {
+                Console.WriteLine(post.Text);
+            }
           /*  MessageManager messageManager = new MessageManager(new EfMessageDal(),new MessageFileManager(new EfMessageFileDal(),new FileUploadHelper()));
             List<Message> messages =  messageManager.AllMessageDelete("string","mehmetkekec");
             foreach (Message message in messages)

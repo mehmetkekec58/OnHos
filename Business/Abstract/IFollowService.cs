@@ -13,9 +13,8 @@ namespace Business.Abstract
     {
         IResult Follow(Follow follow);
         IResult Unfollow(Follow follow);
-        IDataResult<bool> IsFollow(Follow follow);
+        IDataResult<Follow> IsFollow(Follow follow);
         IDataResult<int> NumberOfFollowers(string userName);  
-
 
     }
 }

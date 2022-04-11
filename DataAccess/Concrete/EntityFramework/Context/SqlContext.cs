@@ -31,11 +31,20 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Branch> Branches { get; set; }
         public DbSet<Video> Videos { get; set; }
         public DbSet<Post> Posts { get; set; }
-
-
-
-
-
+        public DbSet<ReadingList> ReadingLists { get; set; }
+        public DbSet<Balance> Balances { get; set; }
+        public DbSet<AldigimPaketler> AldigimPaketler { get; set; }
+        public DbSet<ArticleLike> articleLikes { get; set; }
+        public DbSet<PostLike> postLikes { get; set; }
+        public DbSet<Purse> Purses { get; set; }
+        public DbSet<Paketler> Paketler { get; set; }
+        public DbSet<VideoLike> VideoLikes { get; set; }
+        public DbSet<HistoryDoctor> HistoryDoctor { get; set; }
+        public DbSet<VisitArticle> VisitArticle { get; set; }
+        public DbSet<VisitDoctorProfile> VisitDoctorProfiles { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<ArticleAndTag> ArticleAndTag { get; set; }
+        public DbSet<VideoAndTag> VideoAndTag { get; set; }
 
 
 

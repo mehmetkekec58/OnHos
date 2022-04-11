@@ -55,5 +55,7 @@
         public static string DeletedFromHistory="Geçmişten silindi";
         public static string ProfileDetailsUpdated="Profile bilgileri güncellendi";
         public static string BranchUpdated= "Branş güncellendi";
+        public static string DeletedFromReadingList="Okuma listesinden silindi";
+        public static string AddedToReadingList= "Okuma listesine eklendi";
     }
 }

@@ -27,38 +27,39 @@ namespace Business.Concrete
 
         public IResult Follow(Follow follow)
         {
-           IResult result = BusinessRules.Run(IsAlreadyFollowing(follow),IsThereTheUser(follow),IsYourself(follow),CanItBeFollowed(follow));
+            IResult result = BusinessRules.Run(IsAlreadyFollowing(follow), IsThereTheUser(follow),IsYourself(follow), CanItBeFollowed(follow));
             if (result != null)
             {
                 return result;
             }
-
+         
             _followDal.Add(follow);
             return new SuccessResult(Messages.Followed);
-
-
         }
-        public IDataResult<bool> IsFollow(Follow follow)
+
+        public IDataResult<Follow> IsFollow(Follow follow)
         {
             IResult result = BusinessRules.Run(IsAlreadyFollowing(follow),IsThereTheUser(follow));
             if (result !=null)
             {
-                return new SuccessDataResult<bool>(true, result.Message);
+                var result2 = GetFollowByUserName(follow.TakipEden, follow.TakipEdilen);
+                return result2;
             }
-            return new SuccessDataResult<bool>(false, Messages.YouAreNotFollowingTheUser);
+            return new SuccessDataResult<Follow>(null, Messages.YouAreNotFollowingTheUser);
         }
 
        
 
         public IResult Unfollow(Follow follow)
         {
-            IResult result = BusinessRules.Run(/*IsThereTheUser(follow)*/);
-            if (result != null)
+            Follow follow1 = _followDal.Get(p => p.TakipEden == follow.TakipEden && p.TakipEdilen == follow.TakipEdilen);
+            if (follow1 !=null)
             {
-                _followDal.Delete(follow);
+                _followDal.Delete(follow1);
                 return new SuccessResult(Messages.UnFollowed);
             }
-            return new ErrorResult(Messages.SomethingWentWrong);
+            return new ErrorResult("Takipten çıkma başarısız");
+           
         }
 
         public IDataResult<int> NumberOfFollowers(string userName)
@@ -76,7 +77,16 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
-    
+        private IDataResult<Follow> GetFollowByUserName(string kendiUserName, string karsiUserName)
+        {
+            Follow result = _followDal.Get(p => p.TakipEden == kendiUserName && p.TakipEdilen == karsiUserName);
+            if (result != null)
+            {
+                return new SuccessDataResult<Follow>(result, "getirildi");
+            }
+            return new ErrorDataResult<Follow>(result, "getirme baş<rısız");
+        }
+
         private IResult IsYourself(Follow follow)
         {
             if (follow.TakipEden==follow.TakipEdilen)
@@ -89,12 +99,10 @@ namespace Business.Concrete
         //Sadece doktor ve yetkili kişi olanlar takip edilebilir
         private IResult CanItBeFollowed(Follow follow)
         {
-            foreach (OperationClaim item in _userService.GetClaimsNameByUserName(follow.TakipEdilen)) 
+            int claims = _userService.GetClaimsNameByUserName(follow.TakipEdilen).Count();
+            if (claims>0)
             {
-                if (item.Name != "")
-                {
-                    return new SuccessResult();
-                }
+                return new SuccessResult();
             }
             return new ErrorResult(Messages.ThisUserCannotBeFollowed) ;
         }
@@ -109,5 +117,7 @@ namespace Business.Concrete
            return new ErrorResult(Messages.ThereIsNoSuchUser);
 
        }
+
+       
     }
 }
